@@ -5,7 +5,7 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fronta
 eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
 
 # 웹캠 열기
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 while True:
     # 웹캠에서 비디오 프레임 읽기
@@ -19,7 +19,7 @@ while True:
     # 흑백으로 변환
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    # 얼굴 검출
+    # 얼굴 검출(avg : scaleFactor=1.1, minNeighbors=5)
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
     for (x, y, w, h) in faces:
